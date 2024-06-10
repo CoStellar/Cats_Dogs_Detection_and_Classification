@@ -19,7 +19,7 @@ tf.get_logger().setLevel('ERROR')
 model_handle = r'https://tfhub.dev/tensorflow/faster_rcnn/inception_resnet_v2_1024x1024/1'
 detection_model = hub.load(model_handle)
 
-# Ładowanie modelu klasyfikacyjnego (upewnij się, że to jest ścieżka do twojego wytrenowanego modelu)
+# Ładowanie modelu klasyfikacyjnego
 classification_model = tf.keras.models.load_model(r'./trained_model.keras')
 
 # Ładowanie mapy etykiet
@@ -34,8 +34,8 @@ def load_image_from_local_file(file_path):
     except Exception as e:
         raise IOError(f"Nie można otworzyć pliku obrazu: {e}")
 
-# Definiowanie nazw klas (upewnij się, że są zgodne z etykietami użytymi podczas trenowania modelu)
-class_names = ['Kot', 'Pies']  # Zmodyfikuj tę listę zgodnie z etykietami w twoim zestawie danych
+# Definiowanie nazw klas 
+class_names = ['Kot', 'Pies']  
 icon = Image.open(r'./kotvspies.png')
 
 # Inicjalizacja interfejsu graficznego (GUI)
@@ -162,7 +162,7 @@ def process_image():
                 predicted_class = 'Pies'
                 confidence_score = (prediction.numpy()[0] - 0.5) / 0.5
 
-            # Aktualizujemy liczbę kotów lub psów tylko jeśli confidence score jest większe niż 0.5
+            # Aktualizacja liczby kotów lub psów jeśli confidence score jest większe niż 0.8
             if confidence_score > 0.8:
                 if predicted_class == 'Kot':
                     koty += 1

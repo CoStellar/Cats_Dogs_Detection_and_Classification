@@ -6,15 +6,15 @@ import cv2
 import matplotlib.pylab as plt
 from tensorflow.keras.preprocessing import image_dataset_from_directory
 
-# Wyświetlamy wersję TensorFlow i informację o dostępności GPU
+# Wyświetlenie wersji TensorFlow i informacji o dostępności GPU
 print("Wersja TensorFlow:", tf.__version__)
 print("GPU jest", "dostępne" if tf.config.list_physical_devices('GPU') else "NIEDOSTĘPNE")
 
-# Definiujemy ścieżki do katalogów z danymi treningowymi i walidacyjnymi
+# Zdefiniowanie ścieżek do katalogów z danymi treningowymi i walidacyjnymi
 validation_dir = 'archive/dataset/test_set'
 train_dir = 'archive/dataset/training_set'
 
-# Ustawienia wielkości partii danych i rozmiaru obrazów
+# Ustawienie wielkości partii danych i rozmiaru obrazów
 BATCH_SIZE = 32
 IMG_SIZE = (160, 160)
 
@@ -135,7 +135,7 @@ model.summary()
 len(model.trainable_variables)
 
 # Ustawienie liczby epok treningu na 30
-initial_epochs = 30  # Ustawienie liczby epok na 30
+initial_epochs = 30  
 loss0, accuracy0 = model.evaluate(validation_dataset)
 
 # Wyświetlenie początkowych wartości straty i dokładności
